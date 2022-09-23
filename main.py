@@ -137,7 +137,7 @@ def excel_print():
         print("No such file.")
 
 #change accordingly
-username = "samuelsong98@hotmail.com"
+username = ""
 password = ""
 software_engineer_url = "https://www.linkedin.com/jobs/search/?currentJobId=3204289656&keywords=software%20engineer&refresh=true"
 cyber_security_specialist_url = "https://www.linkedin.com/jobs/search/?currentJobId=3150477953&keywords=cyber%20security%20specialist&refresh=true"
