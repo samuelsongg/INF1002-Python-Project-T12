@@ -10,5 +10,5 @@
 - Google Chrome
 
 # LinkedIn Credentials
-Email: inf1002grp12@gmail.com
-Password: INF1002grp12!
+- Email: inf1002grp12@gmail.com
+- Password: INF1002grp12!
