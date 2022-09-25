@@ -89,19 +89,18 @@ def data_scraping():
         list_1 = [job_name,company_name,company_sector,employment_type,position_level,location,work_type,employee_number,posted_date,applicants]
         excel_list.append(list_1)
 
-        global i
-        i += 1
-
-        print(f"{i}.\t{'Job Title:' : <18}{job_name}")
-        print(f"\t{'Company Name:' : <18}{company_name}")
-        print(f"\t{'Sector:' : <18}{company_sector}")
-        print(f"\t{'Employment Type:' : <18}{employment_type}")
-        print(f"\t{'Position Level:' : <18}{position_level}")
-        print(f"\t{'Location:' : <18}{location}")
-        print(f"\t{'Work Type:' : <18}{work_type}")
-        print(f"\t{'No. of Employees:' : <18}{employee_number}")
-        print(f"\t{'Job Posted Date:' : <18}{posted_date}")
-        print(f"\t{'Applicants:' : <18}{applicants}\n\n")
+        # global i
+        # i += 1
+        # print(f"{i}.\t{'Job Title:' : <18}{job_name}")
+        # print(f"\t{'Company Name:' : <18}{company_name}")
+        # print(f"\t{'Sector:' : <18}{company_sector}")
+        # print(f"\t{'Employment Type:' : <18}{employment_type}")
+        # print(f"\t{'Position Level:' : <18}{position_level}")
+        # print(f"\t{'Location:' : <18}{location}")
+        # print(f"\t{'Work Type:' : <18}{work_type}")
+        # print(f"\t{'No. of Employees:' : <18}{employee_number}")
+        # print(f"\t{'Job Posted Date:' : <18}{posted_date}")
+        # print(f"\t{'Applicants:' : <18}{applicants}\n\n")
 
 def page_navigator():
     for y in range(pages-1):
@@ -190,13 +189,11 @@ if menu_option == 1:
     # change file path accordingly
     path_to_chromedriver = "C:/Program Files/Google/Chrome/Application/chromedriver.exe"
     browser = webdriver.Chrome(executable_path=path_to_chromedriver)
-    browser.get(
-        "https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Ffeed%2F%3FdoFeedRefresh%3Dtrue%26nis%3Dtrue&fromSignIn=true&trk=cold_join_sign_in")
+    browser.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Ffeed%2F%3FdoFeedRefresh%3Dtrue%26nis%3Dtrue&fromSignIn=true&trk=cold_join_sign_in")
     browser.find_element(By.ID, "username").send_keys(username)
     browser.find_element(By.ID, "password").send_keys(password)
     browser.find_element(By.CLASS_NAME, "login__form_action_container").submit()
-    WebDriverWait(browser, 60).until(
-        EC.visibility_of_element_located((By.CLASS_NAME, "scaffold-layout__sidebar")))
+    WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.CLASS_NAME, "scaffold-layout__sidebar")))
     browser.get(search_field)
     action = ActionChains(browser)
     i = 0
@@ -205,6 +202,19 @@ if menu_option == 1:
     page_navigator()
     excel_write()
     browser.close()
+    while True:
+        try:
+            option1 = int(input("Would you like to print out the data scraped?\n1. Yes\n2. No\n"))
+            if option1 in range(1, 3):
+                if option1 == 1:
+                    excel_print()
+                    sys.exit()
+                elif option1 == 2:
+                    sys.exit()
+        except SystemExit:
+            sys.exit()
+        except:
+            pass
 
 if menu_option == 2:
     excel_print()
