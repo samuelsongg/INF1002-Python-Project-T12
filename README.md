@@ -9,3 +9,6 @@
 - Python 3.7
 - Google Chrome
 
+# LinkedIn Credentials
+- Email: inf1002grp12@gmail.com
+- Password: INF1002grp12!
