@@ -1,35 +1,37 @@
-import xlsxwriter
+import nltk
+nltk.download("punkt")
+nltk.download("stopwords")
+from rake_nltk import Rake
 import pandas as pd
-import openpyxl
+import xlsxwriter
 
-while True:
-    try:
-        job_option = int(input("Please select an option:\n1. Software Engineer\n2. Cyber Security Specialist\n3. Data Analyst\n"))
-        if job_option in range(1, 4):
-            break
-    except:
-        pass
+def extract_keywords(i):
+    export = pd.read_excel(f'keywords.xlsx', header=None)
+    keyword_list = export.values.T[0].tolist()
+    # workbook = xlsxwriter.Workbook(f'_keyword.xlsx')
+    # worksheet = workbook.add_worksheet()
+    final_keyword_list2 = []
 
-if job_option == 1:
-    xl_name = "SoftwareEngineer"
-elif job_option == 2:
-    xl_name = "CyberSecuritySpecialist"
-elif job_option == 3:
-    xl_name = "DataAnalyst"
+    for cell in keyword_list:
+        try:
+            r = Rake()
+            r.extract_keywords_from_text(cell)
+            final_keyword_list1 = ""
+            for rating, keyword in r.get_ranked_phrases_with_scores():
+                if rating >= 15:
 
+                    final_keyword_list1 += keyword + " , "
 
-# def excel_print():
-#     workbook = openpyxl.load_workbook(f"{xl_name}.xlsx")
-#     worksheet = workbook.active
-#     print(worksheet.cell(row=1, column=1).value)
+                    # final_keyword_list1.append(keyword + " ^ ")
+                    # for word in final_keyword_list1:
+                    #     word += "\n"
+            final_keyword_list2.append(final_keyword_list1)
+        except:
+            final_keyword_list2.append(" ")
+    return final_keyword_list2[i]
+    # for row_index, element in enumerate(final_keyword_list2, start=0):
+    #     worksheet.write(row_index, 0, element)
 
-def excel_print():
-    try:
-        pd.set_option('display.max_colwidth', 200)
-        pd.set_option("display.expand_frame_repr", False)
-        pd.set_option("display.max_rows", None)
-        df = pd.read_excel(f"{xl_name}.xlsx")
-        print(df)
-    except:
-        print("No such file.")
-excel_print()
+    # print(final_keyword_list2)
+
+    # workbook.close()

@@ -9,6 +9,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import xlsxwriter
 import pandas as pd
+import test
 # import requests
 # import selenium.webdriver.remote.webdriver
 # from newspaper import Article
@@ -62,10 +63,21 @@ def data_scraping():
         except:
             applicants = "Nil"
 
-        #extract text for keyword analysis. Ignore for now.
-        # job_desc = soup.find_all("div", class_="jobs-description-content__text--stretch")
-        # for details in job_desc:
-        #     keywords = details.text
+        #extract text for keyword analysis
+        job_desc = soup.find_all("div", class_="jobs-description-content__text--stretch")
+        for details in job_desc:
+            keywords = details.text.strip()
+            excel_list2.append(keywords)
+
+        global i
+        workbook = xlsxwriter.Workbook(f'keywords.xlsx')
+        worksheet = workbook.add_worksheet()
+        for row_index, value in enumerate(excel_list2, start=0):
+            worksheet.write(row_index, 0, value)
+        workbook.close()
+
+        keywords = test.extract_keywords(i)
+        i += 1
 
         if len(job_spec_1.split(" · ")) == 2:
             job_spec_1 = job_spec_1.split(" · ")
@@ -86,21 +98,8 @@ def data_scraping():
         if "premium" in employee_number.lower():
             employee_number = "Nil"
 
-        list_1 = [job_name,company_name,company_sector,employment_type,position_level,location,work_type,employee_number,posted_date,applicants]
-        excel_list.append(list_1)
-
-        # global i
-        # i += 1
-        # print(f"{i}.\t{'Job Title:' : <18}{job_name}")
-        # print(f"\t{'Company Name:' : <18}{company_name}")
-        # print(f"\t{'Sector:' : <18}{company_sector}")
-        # print(f"\t{'Employment Type:' : <18}{employment_type}")
-        # print(f"\t{'Position Level:' : <18}{position_level}")
-        # print(f"\t{'Location:' : <18}{location}")
-        # print(f"\t{'Work Type:' : <18}{work_type}")
-        # print(f"\t{'No. of Employees:' : <18}{employee_number}")
-        # print(f"\t{'Job Posted Date:' : <18}{posted_date}")
-        # print(f"\t{'Applicants:' : <18}{applicants}\n\n")
+        list_1 = [job_name,company_name,company_sector,employment_type,position_level,location,work_type,employee_number,posted_date,applicants,keywords]
+        excel_list1.append(list_1)
 
 def page_navigator():
     for y in range(pages-1):
@@ -116,14 +115,15 @@ def page_navigator():
 def excel_write():
     workbook = xlsxwriter.Workbook(f'{xl_name}.xlsx')
     worksheet = workbook.add_worksheet()
-    header_value = ["Job Title","Company Name","Sector","Employment Type","Position Level","Location","Work Type","No. of Employees","Job Posted Date","Applicants"]
+    header_value = ["Job Title","Company Name","Sector","Employment Type","Position Level","Location","Work Type","No. of Employees","Job Posted Date","Applicants","Keywords"]
     for col_index, value in enumerate(header_value):
         worksheet.write(0, col_index, value)
-    for row_index, row in enumerate(excel_list, start=1):
+    for row_index, row in enumerate(excel_list1, start=1):
         for col_index, value in enumerate(row):
             worksheet.write(row_index, col_index, value)
-
     workbook.close()
+
+
 
 def excel_print():
     try:
@@ -136,12 +136,13 @@ def excel_print():
         print("No such file.")
 
 #change accordingly
-username = ""
-password = ""
+username = "inf1002grp12@gmail.com"
+password = "INF1002grp12!"
 software_engineer_url = "https://www.linkedin.com/jobs/search/?currentJobId=3204289656&keywords=software%20engineer&refresh=true"
 cyber_security_specialist_url = "https://www.linkedin.com/jobs/search/?currentJobId=3150477953&keywords=cyber%20security%20specialist&refresh=true"
 data_analyst_url = "https://www.linkedin.com/jobs/search/?currentJobId=3246469376&keywords=data%20analyst&refresh=true"
-excel_list = []
+excel_list1 = []
+excel_list2 = []
 
 while True:
     try:
@@ -155,7 +156,6 @@ while True:
         sys.exit()
     except:
         pass
-
 
 while True:
     try:
@@ -186,10 +186,11 @@ if menu_option == 1:
         except:
             pass
 
-    # change file path accordingly
+    #change file path accordingly
     path_to_chromedriver = "C:/Program Files/Google/Chrome/Application/chromedriver.exe"
     browser = webdriver.Chrome(executable_path=path_to_chromedriver)
     browser.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Ffeed%2F%3FdoFeedRefresh%3Dtrue%26nis%3Dtrue&fromSignIn=true&trk=cold_join_sign_in")
+    browser.maximize_window()
     browser.find_element(By.ID, "username").send_keys(username)
     browser.find_element(By.ID, "password").send_keys(password)
     browser.find_element(By.CLASS_NAME, "login__form_action_container").submit()
@@ -216,7 +217,7 @@ if menu_option == 1:
         except:
             pass
 
-if menu_option == 2:
+elif menu_option == 2:
     excel_print()
 
 
