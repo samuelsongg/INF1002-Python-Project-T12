@@ -9,7 +9,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import xlsxwriter
 import pandas as pd
-import test
+import keyword_extraction
+# import test
 # import requests
 # import selenium.webdriver.remote.webdriver
 # from newspaper import Article
@@ -20,14 +21,19 @@ import test
 def data_scraping():
     WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.CLASS_NAME, "job-card-list__title")))
     #scrolling page to load all jobs
-    browser.find_element(By.CLASS_NAME, "job-card-list__title").click()
     while True:
+        browser.find_element(By.CLASS_NAME, "job-card-list__title").click()
         action.send_keys(Keys.TAB * 250).perform()
         time.sleep(0.5)
-        job_list = browser.find_elements(By.CLASS_NAME, "artdeco-entity-lockup__title")
-        if len(job_list) >= 24:
-            break
-        else:
+        # job_list = browser.find_elements(By.CLASS_NAME, "artdeco-entity-lockup__title")
+        # if len(job_list) >= 24:
+        try:
+            job_list = browser.find_elements(By.CLASS_NAME, "jobs-search-results__job-card-search--generic-occludable-area")
+            if len(job_list) == 0:
+                break
+            else:
+                pass
+        except:
             pass
 
     job_list = browser.find_elements(By.CLASS_NAME, "scaffold-layout__list-item")
@@ -64,20 +70,21 @@ def data_scraping():
             applicants = "Nil"
 
         #extract text for keyword analysis
+        # job_desc = soup.find("div", class_="jobs-description-content__text--stretch")
+        # job_desc = job_desc.find_all("ul")
+        # keywords1 = ""
+        # for details in job_desc:
+        #     details1 = details.text.strip().lower()
+        #     if contains_word("experience", details1) or contains_word("skills", details1) or contains_word("ability", details1) or contains_word("exposure", details1) or contains_word("proficient", details1):
+        #         keyword_line = details.find_all("li")
+        #         for line in keyword_line:
+        #             keywords1 += (line.text.strip() + "\n")
+        # if keywords1 == "": #delete those with empty keywords
+
+
         job_desc = soup.find_all("div", class_="jobs-description-content__text--stretch")
         for details in job_desc:
-            keywords = details.text.strip()
-            excel_list2.append(keywords)
-
-        global i
-        workbook = xlsxwriter.Workbook(f'keywords.xlsx')
-        worksheet = workbook.add_worksheet()
-        for row_index, value in enumerate(excel_list2, start=0):
-            worksheet.write(row_index, 0, value)
-        workbook.close()
-
-        keywords = test.extract_keywords(i)
-        i += 1
+            keywords1 = details.text.strip()
 
         if len(job_spec_1.split(" · ")) == 2:
             job_spec_1 = job_spec_1.split(" · ")
@@ -98,7 +105,7 @@ def data_scraping():
         if "premium" in employee_number.lower():
             employee_number = "Nil"
 
-        list_1 = [job_name,company_name,company_sector,employment_type,position_level,location,work_type,employee_number,posted_date,applicants,keywords]
+        list_1 = [job_name,company_name,company_sector,employment_type,position_level,location,work_type,employee_number,posted_date,applicants,keywords1]
         excel_list1.append(list_1)
 
 def page_navigator():
@@ -123,7 +130,8 @@ def excel_write():
             worksheet.write(row_index, col_index, value)
     workbook.close()
 
-
+def contains_word(w, s):
+    return f" {w} " in f" {s} "
 
 def excel_print():
     try:
@@ -190,7 +198,7 @@ if menu_option == 1:
     path_to_chromedriver = "C:/Program Files/Google/Chrome/Application/chromedriver.exe"
     browser = webdriver.Chrome(executable_path=path_to_chromedriver)
     browser.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Ffeed%2F%3FdoFeedRefresh%3Dtrue%26nis%3Dtrue&fromSignIn=true&trk=cold_join_sign_in")
-    browser.maximize_window()
+    # browser.maximize_window()
     browser.find_element(By.ID, "username").send_keys(username)
     browser.find_element(By.ID, "password").send_keys(password)
     browser.find_element(By.CLASS_NAME, "login__form_action_container").submit()
