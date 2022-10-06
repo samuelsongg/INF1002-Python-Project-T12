@@ -13,3 +13,18 @@
 # LinkedIn Credentials
 - Email: inf1002grp12@gmail.com
 - Password: INF1002grp12!
+
+#Update 2 by Kenrick
+Added assets, pages, raw_data, venv folders (each folder has own py files).
+Added dashboard.py.
+
+- raw_data folder is the folder for scraped data from linkedin (haven't edit anything yet)
+- assets folder contains data cleaning and processing
+- pages folder with dashboard.py is mainly visualisation
+
+To run:
+- pip install -r requirements.txt
+- py -m streamlit run dashboard.py
+
+
+PM me if there is any issues
