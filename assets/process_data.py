@@ -28,6 +28,7 @@ def cleaner(desc):
         "business", "data", "skills", "skill", 
         "team", "opportunity", "work", "experience",
         "job", "status", "applicants", "previous"
+        "sexual", "orientation"
     ])
     
     cleaned = []

@@ -29,13 +29,13 @@ def clean_data(data):
 
 
 def get_filters(data):
-    st.sidebar.write("Data filters")
+    st.sidebar.write("Data Filters")
 
     num_rows = data.shape[0]
     categorical_filters = pd.Series([True for _ in range(num_rows)])
     for i, column in enumerate([
         "Company Name", "Sector", "Employment Type",
-        "Position Level", "Work Type"
+        "Position Level", "Work Type",
     ]):
         filter_ = st.sidebar.multiselect(
             label = column,

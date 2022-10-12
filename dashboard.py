@@ -32,7 +32,7 @@ def main():
 
     features = st.sidebar.multiselect(
         label = "Select Features To Explore",
-        options = ["Company Name", "Job Posted Date", "Number of Employees", "Sector", "Position Level"], 
+        options = ["Company Name", "Job Posted Date", "No. of Employees", "Sector", "Position Level"],
         default = ["Company Name", "Sector"]
     )
 

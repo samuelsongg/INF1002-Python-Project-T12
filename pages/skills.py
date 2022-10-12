@@ -26,7 +26,8 @@ stop_words = stopwords.words("english")
 stop_words.extend([
     "business", "data", "skills", "skill", 
     "team", "opportunity", "work", "experience",
-    "job", "status", "applicants", "previous"
+    "job", "status", "applicants", "previous",
+    "sexual", "orientation"
 ])
 
 def plot_skills(data, chosen):
