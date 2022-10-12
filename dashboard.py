@@ -28,7 +28,7 @@ def plot_features(data, features):
 
 def main():
     st.title("Analysis of Job Descriptions on LinkedIn")
-    st.sidebar.header("What would you like to explore?")
+    st.sidebar.header("What Would You Like To Explore?")
 
     features = st.sidebar.multiselect(
         label = "Select Features To Explore",
