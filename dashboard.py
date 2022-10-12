@@ -2,9 +2,10 @@ import streamlit as st
 import math
 import matplotlib.pyplot as plt
 from nltk.corpus import stopwords
-
+import nltk
 from assets.dashboard_utils import *
 
+nltk.download('averaged_perceptron_tagger')
 
 def plot_features(data, features):
     num_rows = data.shape[0]
