@@ -54,10 +54,10 @@ def cleaner(desc):
 
     return " ".join(cleaned)
 
-#Clean the raw data to get the cleaned data for analysis
+# Clean the raw data to get the cleaned data for analysis
 def get_model_data(data):
     cleaned_desc = data["Job Desc"].apply(cleaner)
     model_data = pd.DataFrame({"Desc": cleaned_desc, "Role": data["Role"]})
-# edit here to point to the correct path for cleaned_data.csv
+# Edit here to point to the correct path for cleaned_data.csv
     model_data.to_csv("C:/Users/kenri/PycharmProjects/Web-Crawler/cleaned_data.csv", index = False)
     return model_data
