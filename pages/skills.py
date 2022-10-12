@@ -30,6 +30,7 @@ stop_words.extend([
     "sexual", "orientation"
 ])
 
+# wordcloud and ranked skills for random forest
 def plot_skills(data, chosen):
     st.subheader(f"Frequency of words in {chosen} jobs")
     if chosen not in st.session_state:
@@ -56,7 +57,8 @@ def plot_skills(data, chosen):
         col = cols[(i % num_cols)]
         col.write(f"{i+1}) {value.capitalize()}")
 
-
+# 10 most important skills across fields with naive bayes
+# Count the word of the skills that occurs more frequently across fields
 def plot_importance(data):
     n = st.sidebar.slider(label = "Number of skills to show", min_value = 5, max_value = 20, value = 10)
     st.subheader(f"{n} most important skills across fields")
