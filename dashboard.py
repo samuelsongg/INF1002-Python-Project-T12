@@ -14,12 +14,10 @@ def plot_features(data, features):
 
         if column == "Job Posted Date":
             value_counts = pd.to_datetime(subset, format = "%d/%m/%Y")
-
-            time_data = pd.Series(value_counts.index, index = value_counts.values, name = "Job Posted Date")
-            st.line_chart(time_data)
-
             # ax.hist(value_counts)
             # plt.xticks(rotation = 45)
+            st.line_chart(value_counts)
+            
         else:
             value_counts = subset.value_counts().nlargest(10)
             st.bar_chart(value_counts)
