@@ -105,7 +105,7 @@ def data_scraping():
         if "premium" in employee_number.lower():
             employee_number = "Nil"
 
-        list_1 = [job_name,company_name,company_sector,employment_type,position_level,location,work_type,employee_number,posted_date,applicants,keywords1]
+        list_1 = [job_name,company_name,company_sector,employment_type,position_level,location,work_type,keywords1,employee_number,posted_date,applicants]
         excel_list1.append(list_1)
 
 def page_navigator():
@@ -120,9 +120,9 @@ def page_navigator():
             data_scraping()
 
 def excel_write():
-    workbook = xlsxwriter.Workbook(f'{xl_name}.xlsx')
+    workbook = xlsxwriter.Workbook(f'C:/Users/Ryzen/Documents/GitHub/Web-Crawler/raw_data/{xl_name}.xlsx')
     worksheet = workbook.add_worksheet()
-    header_value = ["Job Title","Company Name","Sector","Employment Type","Position Level","Location","Work Type","No. of Employees","Job Posted Date","Applicants","Keywords"]
+    header_value = ["Job Title","Company Name","Sector","Employment Type","Position Level","Location","Work Type","Job Desc","No. of Employees","Job Posted Date","Applicants"]
     for col_index, value in enumerate(header_value):
         worksheet.write(0, col_index, value)
     for row_index, row in enumerate(excel_list1, start=1):
@@ -138,7 +138,7 @@ def excel_print():
         pd.set_option('display.max_colwidth', 200)
         pd.set_option("display.expand_frame_repr", False)
         pd.set_option("display.max_rows", None)
-        df = pd.read_excel(f"{xl_name}.xlsx")
+        df = pd.read_excel(f'C:/Users/Ryzen/Documents/GitHub/Web-Crawler/raw_data/{xl_name}.xlsx')
         print(df)
     except:
         print("No such file.")
@@ -195,7 +195,7 @@ if menu_option == 1:
             pass
 
     #change file path accordingly
-    path_to_chromedriver = "C:/Program Files/Google/Chrome/Application/chromedriver.exe"
+    path_to_chromedriver = "C:/Users/Ryzen/Documents/GitHub/Web-Crawler/chromedriver.exe"
     browser = webdriver.Chrome(executable_path=path_to_chromedriver)
     browser.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Ffeed%2F%3FdoFeedRefresh%3Dtrue%26nis%3Dtrue&fromSignIn=true&trk=cold_join_sign_in")
     # browser.maximize_window()
