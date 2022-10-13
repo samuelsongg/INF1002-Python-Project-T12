@@ -31,7 +31,9 @@ def cleaner(desc):
         "sexual", "orientation", "covid", "vaccinated",
         "quality", "high", "vaccination", "coronavirus",
         "client", "Applicant", "years", "exemption",
-        "what's", "offer", "games", "whats"
+        "what's", "offer", "games", "whats",
+        "gender", "identity", "expression", "gaming"
+
     ])
     
     cleaned = []

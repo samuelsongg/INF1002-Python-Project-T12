@@ -69,22 +69,13 @@ def data_scraping():
         except:
             applicants = "Nil"
 
-        #extract text for keyword analysis
-        # job_desc = soup.find("div", class_="jobs-description-content__text--stretch")
-        # job_desc = job_desc.find_all("ul")
-        # keywords1 = ""
-        # for details in job_desc:
-        #     details1 = details.text.strip().lower()
-        #     if contains_word("experience", details1) or contains_word("skills", details1) or contains_word("ability", details1) or contains_word("exposure", details1) or contains_word("proficient", details1):
-        #         keyword_line = details.find_all("li")
-        #         for line in keyword_line:
-        #             keywords1 += (line.text.strip() + "\n")
-        # if keywords1 == "": #delete those with empty keywords
-
-
+        # extract text for keyword analysis. Ignore for now.
         job_desc = soup.find_all("div", class_="jobs-description-content__text--stretch")
+        job_desc_texts = []
         for details in job_desc:
-            keywords1 = details.text.strip()
+            keywords = details.text
+            job_desc_texts.append(keywords)
+        job_desc_text = " ".join(job_desc_texts)
 
         if len(job_spec_1.split(" · ")) == 2:
             job_spec_1 = job_spec_1.split(" · ")
@@ -105,7 +96,8 @@ def data_scraping():
         if "premium" in employee_number.lower():
             employee_number = "Nil"
 
-        list_1 = [job_name,company_name,company_sector,employment_type,position_level,location,work_type,keywords1,employee_number,posted_date,applicants]
+        list_1 = [job_name, company_name, company_sector, employment_type, position_level, location, work_type,
+                  job_desc_text, employee_number, posted_date, applicants]
         excel_list1.append(list_1)
 
 def page_navigator():

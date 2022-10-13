@@ -24,10 +24,15 @@ nltk.download("averaged_perceptron_tagger")
 
 stop_words = stopwords.words("english")
 stop_words.extend([
-    "business", "data", "skills", "skill", 
+    "business", "data", "skills", "skill",
     "team", "opportunity", "work", "experience",
     "job", "status", "applicants", "previous",
-    "sexual", "orientation"
+    "sexual", "orientation", "covid", "vaccinated",
+    "quality", "high", "vaccination", "coronavirus",
+    "client", "Applicant", "years", "exemption",
+    "what's", "offer", "games", "whats",
+    "gender", "identity", "expression", "gaming"
+
 ])
 
 # wordcloud and ranked skills for random forest
@@ -80,7 +85,7 @@ def main():
         label = "Choose a field", 
         options = ["Cyber Security Specialist", "Data Analyst", "Software Engineer"]
     )
-    ngram = st.sidebar.slider("Choose number of words in phrase", min_value = 1, max_value = 4, value = 2)
+    ngram = st.sidebar.slider("Choose number of words in phrase", min_value = 1, max_value = 2, value = 2)
     st.sidebar.caption("Skills makes more sense when the phrases are short (1~2)")
 
     with st.spinner("Running models..."):
