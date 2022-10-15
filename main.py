@@ -9,24 +9,14 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import xlsxwriter
 import pandas as pd
-# import keyword_extraction
-# import test
-# import requests
-# import selenium.webdriver.remote.webdriver
-# from newspaper import Article
-# import nltk
-# nltk.download("punkt")
-# nltk.download("stopwords")
 
 def data_scraping():
     WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.CLASS_NAME, "job-card-list__title")))
-    #scrolling page to load all jobs
+    # scrolling page to load all jobs
     while True:
         browser.find_element(By.CLASS_NAME, "job-card-list__title").click()
         action.send_keys(Keys.TAB * 250).perform()
         time.sleep(0.5)
-        # job_list = browser.find_elements(By.CLASS_NAME, "artdeco-entity-lockup__title")
-        # if len(job_list) >= 24:
         try:
             job_list = browser.find_elements(By.CLASS_NAME, "jobs-search-results__job-card-search--generic-occludable-area")
             if len(job_list) == 0:
@@ -69,7 +59,6 @@ def data_scraping():
         except:
             applicants = "Nil"
 
-        # extract text for keyword analysis. Ignore for now.
         job_desc = soup.find_all("div", class_="jobs-description-content__text--stretch")
         job_desc_texts = []
         for details in job_desc:
@@ -122,9 +111,6 @@ def excel_write():
             worksheet.write(row_index, col_index, value)
     workbook.close()
 
-def contains_word(w, s):
-    return f" {w} " in f" {s} "
-
 def excel_print():
     try:
         pd.set_option('display.max_colwidth', 200)
@@ -135,14 +121,13 @@ def excel_print():
     except:
         print("No such file.")
 
-#change accordingly
+# change accordingly
 username = "inf1002grp12@gmail.com"
 password = "INF1002grp12!"
 software_engineer_url = "https://www.linkedin.com/jobs/search/?currentJobId=3204289656&keywords=software%20engineer&refresh=true"
 cyber_security_specialist_url = "https://www.linkedin.com/jobs/search/?currentJobId=3150477953&keywords=cyber%20security%20specialist&refresh=true"
 data_analyst_url = "https://www.linkedin.com/jobs/search/?currentJobId=3246469376&keywords=data%20analyst&refresh=true"
 excel_list1 = []
-excel_list2 = []
 
 while True:
     try:
@@ -179,18 +164,17 @@ if menu_option == 1:
     while True:
         try:
             pages = int(input("How many pages do you want to scrape data from? "))
-            #limit pages to 5 otherwise account/IP might get ban
-            if pages in range(1, 6):
+            # limit pages to 10 otherwise account/IP might get ban
+            if pages in range(1, 11):
                 break
 
         except:
             pass
 
-    #change file path accordingly
+    # change file path accordingly
     path_to_chromedriver = "C:/Users/Ryzen/Documents/GitHub/Web-Crawler/chromedriver.exe"
     browser = webdriver.Chrome(executable_path=path_to_chromedriver)
     browser.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Ffeed%2F%3FdoFeedRefresh%3Dtrue%26nis%3Dtrue&fromSignIn=true&trk=cold_join_sign_in")
-    # browser.maximize_window()
     browser.find_element(By.ID, "username").send_keys(username)
     browser.find_element(By.ID, "password").send_keys(password)
     browser.find_element(By.CLASS_NAME, "login__form_action_container").submit()
