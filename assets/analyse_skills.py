@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-#random forest
+# Random Forest
 def run_randomforest(data, ngram = (1, 1)):
     features = data["Desc"]
     target = data["Role"]
@@ -17,7 +17,7 @@ def run_randomforest(data, ngram = (1, 1)):
     
     return pd.Series(rf.feature_importances_, index = feature_names).sort_values(ascending = False)
 
-#naive bayes
+# Naive Bayes
 def run_naivebayes(data, ngram = (2, 2)):
     features = data["Desc"]
     target = data["Role"]

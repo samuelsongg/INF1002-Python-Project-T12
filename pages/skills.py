@@ -74,6 +74,8 @@ def plot_importance(data):
 def main():
     files = os.listdir()
     st.title("Explore Skills")
+
+# Create and load the cleaned data if not already loaded
     if "cleaned_data.csv" not in files:
         with st.spinner("Loading Files..."):
             raw_data = get_raw_data()
@@ -81,13 +83,16 @@ def main():
     else:
         data = pd.read_csv("cleaned_data.csv")
 
+# Choose which scrapped data files to explore
     chosen = st.sidebar.selectbox(
         label = "Choose a field", 
         options = ["Cyber Security Specialist", "Data Analyst", "Software Engineer"]
     )
+#  Get/Filter the skills for the chosen field
     ngram = st.sidebar.slider("Choose number of words in phrase", min_value = 1, max_value = 2, value = 2)
     st.sidebar.caption("Skills makes more sense when the phrases are short (1~2)")
 
+# Random Forest will run if data that needs to be displayed is not in session state
     with st.spinner("Running models..."):
         if f"rf{ngram}" not in st.session_state:
             rf_results = run_randomforest(data, (ngram, ngram))
@@ -95,6 +100,7 @@ def main():
         else:
             rf_results = st.session_state[f"rf{ngram}"]
 
+# Naive Bayes will run if data that needs to be displayed is not in session state
         if f"nb{ngram}" not in st.session_state:
             nb_results = run_naivebayes(data, (ngram, ngram))
             st.session_state[f"nb{ngram}"] = nb_results

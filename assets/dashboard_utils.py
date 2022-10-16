@@ -4,7 +4,7 @@ import datetime
 
 from assets.process_data import *
 
-
+# Convert Date and Time to a more readable format
 def convert_date(relative):
     today = datetime.datetime.today()
     if "days" in relative:
@@ -17,7 +17,7 @@ def convert_date(relative):
     posted = today - delta
     return posted.strftime("%d/%m/%Y")
 
-
+# Replace "Nil" values with NA in the Applicants columns and drop any rows with "Nil" values
 def clean_data(data):
     data["Job Desc"] = data["Job Desc"].apply(cleaner)
     data["Job Posted Date"] = data["Job Posted Date"].apply(convert_date)
