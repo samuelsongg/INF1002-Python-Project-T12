@@ -21,7 +21,7 @@ def get_raw_data():
     data = pd.concat([cs, da, se], axis = 0, ignore_index = True)
     return data
 
-# clean the job description using stopwords and tokenisation
+# Clean the job description using stopwords and tokenisation
 def cleaner(desc):
     stop_words = stopwords.words("english")
     stop_words.extend([
@@ -59,7 +59,7 @@ def cleaner(desc):
 
     return " ".join(cleaned)
 
-#Clean the raw data to get the cleaned data for analysis
+# Clean the raw data to ready the cleaned data for analysis
 def get_model_data(data):
     cleaned_desc = data["Job Desc"].apply(cleaner)
     model_data = pd.DataFrame({"Desc": cleaned_desc, "Role": data["Role"]})

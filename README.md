@@ -24,7 +24,5 @@ Added dashboard.py.
 
 To run:
 - pip install -r requirements.txt
-- py -m streamlit run dashboard.py
+- click on the start.bat file in the folder
 
-
-PM me if there is any issues
