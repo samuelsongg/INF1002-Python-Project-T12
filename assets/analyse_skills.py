@@ -17,7 +17,7 @@ def run_randomforest(data, ngram = (1, 1)):
     
     return pd.Series(rf.feature_importances_, index = feature_names).sort_values(ascending = False)
 
-# Naive Bayes
+# Multinomial Naive Bayes
 def run_naivebayes(data, ngram = (2, 2)):
     features = data["Desc"]
     target = data["Role"]
