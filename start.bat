@@ -1,1 +1,1 @@
-py -m streamlit run dashboard.py
+py -m streamlit run Dashboard.py
