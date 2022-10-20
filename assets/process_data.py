@@ -65,5 +65,5 @@ def get_model_data(data):
     cleaned_desc = data["Job Desc"].apply(cleaner)
     model_data = pd.DataFrame({"Desc": cleaned_desc, "Role": data["Role"]})
 # edit here to point to the correct path for cleaned_data.csv
-    model_data.to_csv("C:/Users/Ryzen/Documents/GitHub/Web-Crawler/pages/cleaned_data.csv", index = False)
+    model_data.to_csv("C:/Users/Ryzen/Documents/GitHub/Web-Crawler/cleaned_data/cleaned_data.csv", index = False)
     return model_data
