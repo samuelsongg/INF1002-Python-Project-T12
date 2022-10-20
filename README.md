@@ -3,7 +3,7 @@
 - Password: INF1002grp12!
 
 ## Prerequisites:
-```pip install -r requirements.txt ```
+- Run ```pip install -r requirements.txt```
 - Make sure the file paths in the source code are edited accordingly
 - Install Google Chrome and chromedriver for Web Scrapping to run correctly
 - Make sure Python 3.0+ is installed
@@ -17,5 +17,5 @@
 
 OR
 
-- In your terminal or cmdline, run 'py -m streamlit run Dashboard.py'
+- Run ```py -m streamlit run Dashboard.py```
 
