@@ -101,6 +101,7 @@ def page_navigator():
             data_scraping()
 
 def excel_write():
+# Edit the path to your own
     workbook = xlsxwriter.Workbook(f'C:/Users/Ryzen/Documents/GitHub/Web-Crawler/raw_data/{xl_name}.xlsx')
     worksheet = workbook.add_worksheet()
     header_value = ["Job Title","Company Name","Sector","Employment Type","Position Level","Location","Work Type","Job Desc","No. of Employees","Job Posted Date","Applicants"]
@@ -121,7 +122,7 @@ def excel_print():
     except:
         print("No such file.")
 
-# change accordingly
+# Change accordingly
 username = "inf1002grp12@gmail.com"
 password = "INF1002grp12!"
 software_engineer_url = "https://www.linkedin.com/jobs/search/?currentJobId=3204289656&keywords=software%20engineer&refresh=true"
@@ -171,7 +172,7 @@ if menu_option == 1:
         except:
             pass
 
-    # change file path accordingly
+# Change file path accordingly
     path_to_chromedriver = "C:/Users/Ryzen/Documents/GitHub/Web-Crawler/chromedriver.exe"
     browser = webdriver.Chrome(executable_path=path_to_chromedriver)
     browser.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Ffeed%2F%3FdoFeedRefresh%3Dtrue%26nis%3Dtrue&fromSignIn=true&trk=cold_join_sign_in")

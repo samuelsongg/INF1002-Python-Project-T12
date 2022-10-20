@@ -27,7 +27,7 @@ def clean_data(data):
     nils = (data == "Nil").any(axis = 1)
     return data.drop(data[nils].index)
 
-
+# Get the filters from the sidebar
 def get_filters(data):
     st.sidebar.write("Data Filters")
 

@@ -7,7 +7,7 @@ import os
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
-# get raw data that was scraped from LinkedIn
+# Get raw data that was scraped from LinkedIn and concatenate it
 def get_raw_data():
 
     cs = pd.read_excel("C:/Users/Ryzen/Documents/GitHub/Web-Crawler/raw_data/CyberSecuritySpecialist.xlsx", sheet_name = 0)
@@ -21,7 +21,7 @@ def get_raw_data():
     data = pd.concat([cs, da, se], axis = 0, ignore_index = True)
     return data
 
-# Clean the job description using stopwords and tokenisation
+# Clean the job description using stopwords, tokenisation and POS tagging
 def cleaner(desc):
     stop_words = stopwords.words("english")
     stop_words.extend([
@@ -60,6 +60,7 @@ def cleaner(desc):
     return " ".join(cleaned)
 
 # Clean the raw data to ready the cleaned data for analysis
+# This function is called in the analyse_skills.py file
 def get_model_data(data):
     cleaned_desc = data["Job Desc"].apply(cleaner)
     model_data = pd.DataFrame({"Desc": cleaned_desc, "Role": data["Role"]})

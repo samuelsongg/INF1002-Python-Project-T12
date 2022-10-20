@@ -35,7 +35,7 @@ stop_words.extend([
 
 ])
 
-# wordcloud and ranked skills for random forest
+# Wordcloud and ranked skills for random forest
 def plot_skills(data, chosen):
     st.subheader(f"Frequency of words in {chosen} jobs")
     if chosen not in st.session_state:

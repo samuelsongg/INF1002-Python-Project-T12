@@ -4,6 +4,7 @@ from assets.dashboard_utils import *
 
 nltk.download('averaged_perceptron_tagger')
 
+# Plot the features selected by the user
 def plot_features(data, features):
     num_rows = data.shape[0]
     for column in features:
