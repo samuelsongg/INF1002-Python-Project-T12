@@ -117,6 +117,7 @@ def excel_print():
         pd.set_option('display.max_colwidth', 200)
         pd.set_option("display.expand_frame_repr", False)
         pd.set_option("display.max_rows", None)
+# Edit the path to your own
         df = pd.read_excel(f'C:/Users/Ryzen/Documents/GitHub/Web-Crawler/raw_data/{xl_name}.xlsx')
         print(df)
     except:

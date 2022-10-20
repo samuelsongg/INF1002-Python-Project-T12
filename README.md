@@ -1,28 +1,16 @@
-# Web-Crawler
-### Requirements
-- pip install beautifulsoup4
-- pip install selenium
-- pip install xlsxwriter
-- pip install pandas
-- pip install nltk
-- https://chromedriver.chromium.org/downloads
-<sub> download chromedriver and place into any folder (no need to run .exe, just change file path in main.py to point to chromedriver.exe) </sub>
-- Python 3.7
-- Google Chrome
-
-# LinkedIn Credentials
+# LinkedIn Credentials (For Web Scrapping)
 - Email: inf1002grp12@gmail.com
 - Password: INF1002grp12!
 
-#Update 2 by Kenrick
-Added assets, pages, raw_data, venv folders (each folder has own py files).
-Added dashboard.py.
+Prerequisites:
+- Run: pip install -r requirements.txt
+- Make sure the paths in the source code are edited accordingly
 
-- raw_data folder is the folder for scraped data from linkedin (haven't edit anything yet)
-- assets folder contains data cleaning and processing
-- pages folder with dashboard.py is mainly visualisation
 
-To run:
-- pip install -r requirements.txt
-- click on the start.bat file in the folder
+To run the dashboard 
+- Click on the start.bat file in the folder
+
+OR
+
+- Run: py -m streamlit run Dashboard.py
 
