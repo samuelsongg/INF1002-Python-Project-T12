@@ -1,4 +1,5 @@
-# LinkedIn Credentials (For Web Scrapping)
+# INF1002 P2 T12: Talent Recruit Competency Study via Job Description Analytics
+## LinkedIn Credentials (For Web Scrapping)
 - Email: inf1002grp12@gmail.com
 - Password: INF1002grp12!
 
