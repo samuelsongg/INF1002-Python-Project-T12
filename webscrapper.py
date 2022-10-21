@@ -118,7 +118,7 @@ def excel_print():
         pd.set_option("display.expand_frame_repr", False)
         pd.set_option("display.max_rows", None)
 # Edit the path to your own
-        df = pd.read_excel(f'C:/Users/Ryzen/Documents/GitHub/Web-Crawler/raw_data/{xl_name}.xlsx')
+        df = pd.read_excel(f'C:/Users/Ryzen/Documents/GitHub/INF1002-Python-Project-T12/raw_data/{xl_name}.xlsx')
         print(df)
     except:
         print("No such file.")
@@ -174,7 +174,7 @@ if menu_option == 1:
             pass
 
 # Change file path accordingly
-    path_to_chromedriver = "C:/Users/Ryzen/Documents/GitHub/Web-Crawler/chromedriver.exe"
+    path_to_chromedriver = "C:/Users/Ryzen/Documents/GitHub/INF1002-Python-Project-T12/chromedriver.exe"
     browser = webdriver.Chrome(executable_path=path_to_chromedriver)
     browser.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Ffeed%2F%3FdoFeedRefresh%3Dtrue%26nis%3Dtrue&fromSignIn=true&trk=cold_join_sign_in")
     browser.find_element(By.ID, "username").send_keys(username)

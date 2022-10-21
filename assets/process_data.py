@@ -9,9 +9,9 @@ from nltk.tokenize import word_tokenize
 # Get raw data that was scraped from LinkedIn and concatenate it with pandas
 def get_raw_data():
 
-    cs = pd.read_excel("C:/Users/Ryzen/Documents/GitHub/Web-Crawler/raw_data/CyberSecuritySpecialist.xlsx", sheet_name = 0)
-    da = pd.read_excel("C:/Users/Ryzen/Documents/GitHub/Web-Crawler/raw_data/DataAnalyst.xlsx", sheet_name = 0)
-    se = pd.read_excel("C:/Users/Ryzen/Documents/GitHub/Web-Crawler/raw_data/SoftwareEngineer.xlsx", sheet_name = 0)
+    cs = pd.read_excel("C:/Users/Ryzen/Documents/GitHub/INF1002-Python-Project-T12/raw_data/CyberSecuritySpecialist.xlsx", sheet_name = 0)
+    da = pd.read_excel("C:/Users/Ryzen/Documents/GitHub/INF1002-Python-Project-T12/raw_data/DataAnalyst.xlsx", sheet_name = 0)
+    se = pd.read_excel("C:/Users/Ryzen/Documents/GitHub/INF1002-Python-Project-T12/raw_data/SoftwareEngineer.xlsx", sheet_name = 0)
 
     cs["Role"] = "Cyber Security Specialist"
     da["Role"] = "Data Analyst"
@@ -64,5 +64,5 @@ def get_model_data(data):
     cleaned_desc = data["Job Desc"].apply(cleaner)
     model_data = pd.DataFrame({"Desc": cleaned_desc, "Role": data["Role"]})
 # Edit here to point to the correct path for cleaned_data.csv
-    model_data.to_csv("C:/Users/Ryzen/Documents/GitHub/Web-Crawler/pages/cleaned_data.csv", index = False)
+    model_data.to_csv("C:/Users/Ryzen/Documents/GitHub/INF1002-Python-Project-T12/pages/cleaned_data.csv", index = False)
     return model_data
