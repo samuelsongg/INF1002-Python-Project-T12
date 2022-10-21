@@ -123,7 +123,7 @@ def excel_print():
     except:
         print("No such file.")
 
-# Change accordingly
+# Change accordingly if needed
 username = "inf1002grp12@gmail.com"
 password = "INF1002grp12!"
 software_engineer_url = "https://www.linkedin.com/jobs/search/?currentJobId=3204289656&keywords=software%20engineer&refresh=true"
@@ -173,7 +173,7 @@ if menu_option == 1:
         except:
             pass
 
-# Change file path accordingly
+# Change file path of chromedriver accordingly
     path_to_chromedriver = "C:/Users/Ryzen/Documents/GitHub/INF1002-Python-Project-T12/chromedriver.exe"
     browser = webdriver.Chrome(executable_path=path_to_chromedriver)
     browser.get("https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Ffeed%2F%3FdoFeedRefresh%3Dtrue%26nis%3Dtrue&fromSignIn=true&trk=cold_join_sign_in")
